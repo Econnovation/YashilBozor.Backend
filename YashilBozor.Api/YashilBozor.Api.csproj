@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YashilBozor.DAL\YashilBozor.DAL.csproj" />
+    <ProjectReference Include="..\YashilBozor.Service\YashilBozor.Service.csproj" />
   </ItemGroup>
 
 </Project>

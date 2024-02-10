@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YashilBozor.DAL", "YashilBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YashilBozor.Api", "YashilBozor.Api\YashilBozor.Api.csproj", "{3937E41F-9F56-4730-8B8E-D5A5EB906CE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YashilBozor.Service", "YashilBozor.Service\YashilBozor.Service.csproj", "{B3960D65-4333-44CE-A5B0-35F33620419B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3937E41F-9F56-4730-8B8E-D5A5EB906CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3937E41F-9F56-4730-8B8E-D5A5EB906CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3937E41F-9F56-4730-8B8E-D5A5EB906CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3960D65-4333-44CE-A5B0-35F33620419B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3960D65-4333-44CE-A5B0-35F33620419B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3960D65-4333-44CE-A5B0-35F33620419B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3960D65-4333-44CE-A5B0-35F33620419B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
