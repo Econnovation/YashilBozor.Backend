@@ -2,9 +2,12 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using YashilBozor.DAL.IRepositories.Categories;
+using YashilBozor.DAL.Repositories.Users;
 using YashilBozor.Domain.Configurations;
 using YashilBozor.Domain.Entities.Categories;
+using YashilBozor.Domain.Entities.Users;
 using YashilBozor.Service.DTOs.Categories;
+using YashilBozor.Service.DTOs.Users;
 using YashilBozor.Service.Exceptions;
 using YashilBozor.Service.Interfaces.Categories;
 using YashilBozor.Service.Validators.Categories;
@@ -80,13 +83,11 @@ public class CategoryService(
         CancellationToken cancellationToken = default
         )
     {
-        var dto = await categoryRepository.SelectByIdAsync(categoryId);
-
-        if (dto.DeletedAt is not null)
-            throw new CustomException(400, "Category is not found");
-
         var category = mapper.Map<Category>(categoryForUpdateDto);
         category.Id = categoryId;
+
+        if (category.DeletedAt is not null)
+            throw new CustomException(400, "Category is not found");
 
         var validationResult = categoryValidate.Validate(category);
 
@@ -102,17 +103,10 @@ public class CategoryService(
 
     public async ValueTask<CategoryForResultDto> DeleteAsync(
         Guid categoryId,
-        bool saveChanges = true,
-        CancellationToken cancellationToken = default
+    bool saveChanges = true,
+    CancellationToken cancellationToken = default
         )
     {
-        var dto = await categoryRepository.SelectByIdAsync(categoryId);
-
-        if (dto.DeletedAt is null)
-            throw new CustomException(400, "Category is not found");
-
-        return mapper.Map<CategoryForResultDto>
-            (await categoryRepository.DeleteAsync
-            (categoryId, saveChanges, cancellationToken));
+        return mapper.Map<CategoryForResultDto>(await categoryRepository.DeleteAsync(categoryId, saveChanges, cancellationToken));
     }
 }

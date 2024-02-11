@@ -42,7 +42,7 @@ public class ProductAssetService
         var asset = await productAssetRepository.SelectByIdAsync(productAssetId);
         if (asset != null && asset.DeletedAt == null)
         {
-            var productAsset = productAssetRepository.DeleteAsync(productAssetId);
+            var productAsset = await productAssetRepository.DeleteAsync(productAssetId);
             return mapper.Map<ProductAssetForResultDto>(productAsset);
         }
 

@@ -45,7 +45,7 @@ public class ProductService
     {
         var dto = await productRepository.SelectByIdAsync(productId);
 
-        if (dto.DeletedAt is null)
+        if (dto.DeletedAt is not null)
             throw new CustomException(400, "Product is not found");
 
         return mapper.Map<ProductForResultDto>(await productRepository
@@ -87,14 +87,12 @@ public class ProductService
         Guid productId, bool saveChanges = true,
         CancellationToken cancellationToken = default)
     {
-        var dto = await productRepository.SelectByIdAsync(productId);
-
-        if (dto.DeletedAt is not null)
-            throw new CustomException(400, "Product is not found");
-
         var product = mapper.Map<Product>(productForUpdateDto);
         product.Id = productId;
 
+        if (product.DeletedAt is not null)
+            throw new CustomException(400, "Product is not found");
+            
         var validationResult = productValidate.Validate(product);
 
         if (!validationResult.IsValid)

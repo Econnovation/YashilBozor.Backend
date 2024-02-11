@@ -10,20 +10,24 @@ using YashilBozor.Api.Middlewares;
 using YashilBozor.Api.Models;
 using YashilBozor.DAL.DbContexts;
 using YashilBozor.DAL.IRepositories.Categories;
+using YashilBozor.DAL.IRepositories.Categories.Assets;
 using YashilBozor.DAL.IRepositories.Commons;
 using YashilBozor.DAL.IRepositories.Notifications;
 using YashilBozor.DAL.IRepositories.Users;
 using YashilBozor.DAL.Repositories.Categories;
+using YashilBozor.DAL.Repositories.Categories.Assets;
 using YashilBozor.DAL.Repositories.Common;
 using YashilBozor.DAL.Repositories.Notifications;
 using YashilBozor.DAL.Repositories.Users;
 using YashilBozor.DAL.SeedDatas;
 using YashilBozor.Service.Commons.Settings;
 using YashilBozor.Service.Interfaces.Categories;
+using YashilBozor.Service.Interfaces.Categories.Assets;
 using YashilBozor.Service.Interfaces.Identity;
 using YashilBozor.Service.Interfaces.Notifications.Services;
 using YashilBozor.Service.Interfaces.Verifications;
 using YashilBozor.Service.Services.Categories;
+using YashilBozor.Service.Services.Categories.Assets;
 using YashilBozor.Service.Services.Identity;
 using YashilBozor.Service.Services.Notifications;
 using YashilBozor.Service.Services.Verifications;
@@ -117,7 +121,8 @@ public static partial class HostConfiguration
             .AddScoped<IEmailMessageService, EmailMessageService>()
             .AddScoped<IUserInfoVerificationCodeService, UserInfoVerificationCodeService>()
             .AddScoped<IEmailSenderService, EmailSenderService>()
-            .AddScoped<IVerificationProcessingService, VerificationProcessingService>();
+            .AddScoped<IVerificationProcessingService, VerificationProcessingService>()
+            .AddScoped<IProductAssetService, ProductAssetService>();
 
         //Reposiotories
         builder.Services
@@ -133,7 +138,8 @@ public static partial class HostConfiguration
             .AddScoped<IEmailTemplateRepository, EmailTemplateRepository>()
             .AddScoped<IUserInfoVerificationCodeRepository, UserInfoVerificationCodeRepository>()
             .AddScoped<IUserCredentialsRepository, UserCreadentialsRepository>()
-            .AddScoped<IProductRepository, ProductRepository>();
+            .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<IProductAssetRepository, ProductAssetRepository>();
 
 
 

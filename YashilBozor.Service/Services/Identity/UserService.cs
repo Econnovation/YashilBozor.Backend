@@ -29,11 +29,6 @@ public class UserService(IUserRepository userRepository, IValidator<User> userVa
         return userRepository.SelectByIdAsync(userId, asNoTracking, cancellationToken);
     }
 
-    //public async ValueTask<User> GetSystemUserAsync(bool asNoTracking = false, CancellationToken cancellationToken = default)
-    //{
-    //    return await Get(user => user.Role == RoleType.System, asNoTracking).FirstAsync(cancellationToken);
-    //}
-
     public async Task<Guid?> GetIdByEmailAddressAsync(string emailAddress, CancellationToken cancellationToken = default)
     {
         var userId = await userRepository.SelectAll(user => user.EmailAddress.Equals(emailAddress) && user.DeletedAt == null).Select(user => user.Id).FirstOrDefaultAsync(cancellationToken);
@@ -62,6 +57,7 @@ public class UserService(IUserRepository userRepository, IValidator<User> userVa
         var validationResult = userValidator.Validate(user);
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors);
+
         user.UpdatedAt = DateTime.UtcNow;
 
         return mapper.Map<UserForResultDto>(await userRepository.UpdateAsync(user, saveChanges, cancellationToken));
